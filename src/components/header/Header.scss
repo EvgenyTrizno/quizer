@@ -1,0 +1,20 @@
+.header {
+    padding: 1rem 0 5rem 0;
+    background-color: var(--purple);
+    &__menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #fff;
+    }
+    &__profile-img img {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #fff;
+        border-radius: 12px;
+        object-fit: cover;
+    }
+    &__title {
+        margin: 0 auto;
+    }
+}

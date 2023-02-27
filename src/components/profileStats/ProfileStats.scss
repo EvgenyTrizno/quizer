@@ -1,0 +1,34 @@
+.profile-stats {
+    &__user {
+        background-color: #fff;
+        width: 300px;
+        margin: 0 auto;
+        margin-top: 2rem;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__stats-img {
+        padding: 0.5rem;
+    }
+    &__user-level svg {
+        color: var(--pink);
+    }
+    &__user-coins svg {
+        color: var(--lettuce);
+    }
+    &__user-box {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        svg {
+            margin-right: 0.5rem;
+        }
+    }
+    &__user-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

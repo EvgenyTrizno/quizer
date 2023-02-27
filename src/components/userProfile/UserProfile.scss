@@ -1,0 +1,41 @@
+.profile {
+    height: 100vh;
+    background-color: var(--purple);
+    padding: 1rem 0;
+    &__user-avatar {
+        width: 100px;
+        height: 100px;
+        border: 2px solid #fff;
+        border-radius: 12px;
+        object-fit: cover;
+    }
+    &__data {
+        display: flex;
+        align-items: center;
+        color: #fff;
+    }
+    &__nickname {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-left: 1rem;
+    }
+    &__analytics-wrapper {
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 12px;
+        position: absolute;
+        width: 50%;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+    }
+    &__analytics-progress {
+        color: var(--lettuce);
+        font-weight: bold;
+        margin-left: 10px;
+    }
+    &__analytics-progress::before {
+        content: '↑';
+    }
+}
