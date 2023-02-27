@@ -9,14 +9,18 @@ import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 const App = () => {
-    const [quizzes] = useState([]);
+    const [quizzes, setQuqzzes] = useState([]);
 
     const fetchQuizzes = async () => {
         const querySnapshot = await getDocs(collection(db, "quizzes"));
         querySnapshot.forEach((doc) => {
           console.log(`${doc.id} => ${doc.data()}`);
         });
+
+        return querySnapshot;
     }
+
+
 
     useEffect(() => {
         fetchQuizzes();
