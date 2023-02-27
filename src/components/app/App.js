@@ -4,8 +4,24 @@ import { MainPage, QuestionPage, RegistrationPage, AuthPage, ProfilePage } from 
 
 import '../../styles/global.scss';
 import '../../styles/media.scss';
+import { db } from '../../firebase/config';
+import { collection, getDocs } from "firebase/firestore"; 
+import { useEffect, useState } from "react";
 
 const App = () => {
+    const [quizzes] = useState([]);
+
+    const fetchQuizzes = async () => {
+        const querySnapshot = await getDocs(collection(db, "quizzes"));
+        querySnapshot.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data()}`);
+        });
+    }
+
+    useEffect(() => {
+        fetchQuizzes();
+    }, [])
+
     return (
         <Router>
             <Switch>
