@@ -1,39 +1,26 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useState } from "react";
 
 import { MainPage, QuestionPage, RegistrationPage, AuthPage, ProfilePage } from '../../pages';
 
 import '../../styles/global.scss';
 import '../../styles/media.scss';
-import { db } from '../../firebase/config';
-import { collection, getDocs } from "firebase/firestore"; 
-import { useEffect, useState } from "react";
 
 const App = () => {
-    const [quizzes, setQuqzzes] = useState([]);
+    const [categorie, setCategorie] = useState('');
 
-    const fetchQuizzes = async () => {
-        const querySnapshot = await getDocs(collection(db, "quizzes"));
-        querySnapshot.forEach((doc) => {
-          console.log(`${doc.id} => ${doc.data()}`);
-        });
-
-        return querySnapshot;
+    const setCategoryForSurvey = (categorie) => {
+        setCategorie(categorie)
     }
-
-
-
-    useEffect(() => {
-        fetchQuizzes();
-    }, [])
 
     return (
         <Router>
             <Switch>
                 <Route exact path='/'>
-                    <MainPage/>
+                    <MainPage setCategoryForSurvey={setCategoryForSurvey}/>
                 </Route>
-                <Route exact path='/questions'>
-                    <QuestionPage/>
+                <Route exact path='/questions-list'>
+                    <QuestionPage categorie={categorie}/>
                 </Route>
                 <Route exact path='/registration'>
                     <RegistrationPage/>

@@ -3,13 +3,13 @@ import QuizMenu from "../components/quizMenu/QuizMenu";
 import SearchPanel from "../components/searchPanel/SearchPanel";
 import QuizCategories from "../components/quizCategories/QuizCategories";
 
-const MainPage = () => {
+const MainPage = ({setCategoryForSurvey}) => {
     return (
         <>
             <Header/>
             <QuizMenu/>
             <SearchPanel/>
-            <QuizCategories/>
+            <QuizCategories setCategoryForSurvey={setCategoryForSurvey}/>
         </>
     );
 }

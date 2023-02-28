@@ -1,10 +1,19 @@
-import man from '../../assets/random-icon.png';
-import ecology from '../../assets/ecology-icon.png';
-import world from '../../assets/world-icon.png';
-import energy from '../../assets/energy-icon.png';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import QuizerServices from '../../services/quizerServices';
+
 import './QuizCategories.scss';
 
-const QuizCategories = () => {
+const QuizCategories = ({setCategoryForSurvey}) => {
+    const [data, setData] = useState([]);
+    const { getCategories } = QuizerServices();
+
+    useEffect(() => {
+        getCategories()
+            .then(res => setData(res));
+    }, []);
+    
     return (
         <div className="categories">
             <div className="container">
@@ -12,33 +21,20 @@ const QuizCategories = () => {
                     Выбор опроса
                 </h2>
                 <div className="categories__items">
-                    <div className="categories__item">
-                        <p className="quiz-menu__item-subtitle">
-                            старт
-                        </p>
-                        <h3 className="quiz-menu__item-title">
-                            Случайный опрос
-                        </h3>
-                        <img src={man} alt="" className="categories__item-img" />
-                    </div>
-                    <div className="categories__item">
-                        <h3 className="categories__item-title">
-                            Экология
-                        </h3>
-                        <img src={ecology} alt="" className="categories__item-img" />
-                    </div>
-                    <div className="categories__item">
-                        <h3 className="categories__item-title">
-                            Патриотизм
-                        </h3>
-                        <img src={world} alt="" className="categories__item-img" />
-                    </div>
-                    <div className="categories__item">
-                        <h3 className="categories__item-title">
-                            Энергосбережение
-                        </h3>
-                        <img src={energy} alt="" className="categories__item-img" />
-                    </div>
+                    {
+                        data.map(item => (
+                            <Link
+                                to="/questions-list" 
+                                className="categories__item" 
+                                key={item.name}
+                                onClick={() => setCategoryForSurvey(item.name)}>
+                                <h3 className="quiz-menu__item-title">
+                                    {item.title}
+                                </h3>
+                                <img src={item.img} alt={item.name} className="categories__item-img" />
+                            </Link>
+                        ))
+                    }
                 </div>
             </div>
         </div>

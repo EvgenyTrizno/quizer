@@ -1,9 +1,9 @@
 import Questions from "../components/questions/Questions";
 
-const QuestionPage = () => {
+const QuestionPage = ({categorie}) => {
     return (
         <>
-            <Questions/>
+            <Questions categorie={categorie}/>
         </>
     );
 }
